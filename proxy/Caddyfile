@@ -1,5 +1,29 @@
-claudio.adavance.com {
-	handle /cotizador* {
+*.claudio.adavance.com {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	@cotizador host cotizador.claudio.adavance.com
+	handle @cotizador {
 		reverse_proxy host.docker.internal:3000
+	}
+
+	@tvn-cms host tvn-cms.claudio.adavance.com
+	handle @tvn-cms {
+		reverse_proxy host.docker.internal:4001
+	}
+
+	@tvn-backend host tvn-backend.claudio.adavance.com
+	handle @tvn-backend {
+		reverse_proxy host.docker.internal:4000
+	}
+
+	@tvn-mobile host tvn-mobile.claudio.adavance.com
+	handle @tvn-mobile {
+		reverse_proxy host.docker.internal:4002
+	}
+
+	handle {
+		respond "Not found" 404
 	}
 }
