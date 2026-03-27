@@ -1,7 +1,5 @@
 claudio.adavance.com {
-	redir /cotizador /cotizador/ permanent
-
-	handle_path /cotizador/* {
+	handle /cotizador* {
 		reverse_proxy host.docker.internal:3000
 	}
 }
