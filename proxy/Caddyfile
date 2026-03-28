@@ -8,6 +8,22 @@
 		reverse_proxy host.docker.internal:3000
 	}
 
+	@cotizador-db host cotizador-db.claudio.adavance.com
+	handle @cotizador-db {
+		basic_auth {
+			admin $2a$14$Ihx71qo8ZjZderjKCZR9eeieGmPmQEeR5IBJEo8eWQh66hVqHmUve
+		}
+		reverse_proxy host.docker.internal:3011
+	}
+
+	@tvn-db host tvn-db.claudio.adavance.com
+	handle @tvn-db {
+		basic_auth {
+			admin $2a$14$RwJrkdvMB1KwbgRpNB3LVel6Zk.i9zEhXhEeiBc4eYqU0vJ9iWk6W
+		}
+		reverse_proxy host.docker.internal:4011
+	}
+
 	@tvn-cms host tvn-cms.claudio.adavance.com
 	handle @tvn-cms {
 		reverse_proxy host.docker.internal:4000
