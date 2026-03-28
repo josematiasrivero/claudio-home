@@ -115,18 +115,18 @@ install_docker() {
     apt-get update -qq
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-    # Configure Docker and containerd to store data on /mtn/docker-system
-    mkdir -p /mtn/docker-system/docker /mtn/docker-system/containerd
+    # Configure Docker and containerd to store data on /mnt/data/docker-system
+    mkdir -p /mnt/data/docker-system/docker /mnt/data/docker-system/containerd
 
     cat > /etc/docker/daemon.json <<'DJSON'
 {
-  "data-root": "/mtn/docker-system/docker"
+  "data-root": "/mnt/data/docker-system/docker"
 }
 DJSON
 
     # Update containerd root in config
     if [ -f /etc/containerd/config.toml ]; then
-        sed -i 's|^root = .*|root = "/mtn/docker-system/containerd"|' /etc/containerd/config.toml
+        sed -i 's|^root = .*|root = "/mnt/data/docker-system/containerd"|' /etc/containerd/config.toml
     fi
 
     # Start docker if not running
@@ -134,7 +134,7 @@ DJSON
     systemctl start docker 2>/dev/null || true
     systemctl enable docker 2>/dev/null || true
 
-    info "Docker installed (data-root: /mtn/docker-system)"
+    info "Docker installed (data-root: /mnt/data/docker-system)"
 }
 
 # ---------- 6. Clone repos ----------
