@@ -16,6 +16,14 @@
 		reverse_proxy host.docker.internal:3011
 	}
 
+	@cotizador-code host cotizador-code.claudio.adavance.com
+	handle @cotizador-code {
+		basic_auth {
+			admin $2a$14$Lr92pPkUDxWMqBM9qQBJwuDp.5.STGRuM.KrSfjSHBDTxHj35emS6
+		}
+		reverse_proxy host.docker.internal:4013
+	}
+
 	@cotizador-files host cotizador-files.claudio.adavance.com
 	handle @cotizador-files {
 		reverse_proxy host.docker.internal:4012
