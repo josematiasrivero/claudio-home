@@ -16,6 +16,11 @@
 		reverse_proxy host.docker.internal:3011
 	}
 
+	@cotizador-files host cotizador-files.claudio.adavance.com
+	handle @cotizador-files {
+		reverse_proxy host.docker.internal:4012
+	}
+
 	@tvn-db host tvn-db.claudio.adavance.com
 	handle @tvn-db {
 		basic_auth {
