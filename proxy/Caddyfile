@@ -29,6 +29,27 @@
 		reverse_proxy host.docker.internal:3012
 	}
 
+	@bearme host bearme.claudio.adavance.com
+	handle @bearme {
+		reverse_proxy host.docker.internal:5000
+	}
+
+	@bearme-db host bearme-db.claudio.adavance.com
+	handle @bearme-db {
+		basic_auth {
+			admin $2a$14$IWcdEpkoH5mHQ1duXr3.cuxj/aEpnHU3zUVAqVfTAbe7fBLATgymu
+		}
+		reverse_proxy host.docker.internal:5011
+	}
+
+	@bearme-code host bearme-code.claudio.adavance.com
+	handle @bearme-code {
+		basic_auth {
+			admin $2a$14$IWcdEpkoH5mHQ1duXr3.cuxj/aEpnHU3zUVAqVfTAbe7fBLATgymu
+		}
+		reverse_proxy host.docker.internal:5013
+	}
+
 	@tvn-db host tvn-db.claudio.adavance.com
 	handle @tvn-db {
 		basic_auth {
