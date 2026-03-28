@@ -21,12 +21,12 @@
 		basic_auth {
 			admin $2a$14$Lr92pPkUDxWMqBM9qQBJwuDp.5.STGRuM.KrSfjSHBDTxHj35emS6
 		}
-		reverse_proxy host.docker.internal:4013
+		reverse_proxy host.docker.internal:3013
 	}
 
 	@cotizador-files host cotizador-files.claudio.adavance.com
 	handle @cotizador-files {
-		reverse_proxy host.docker.internal:4012
+		reverse_proxy host.docker.internal:3012
 	}
 
 	@tvn-db host tvn-db.claudio.adavance.com
