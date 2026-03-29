@@ -14,6 +14,18 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  code-server:
+    image: codercom/code-server:latest
+    restart: unless-stopped
+    environment:
+      - DOCKER_USER=root
+    user: root
+    volumes:
+      - /root/code:/home/coder/project
+    ports:
+      - "8080:8080"
+    command: --bind-addr 0.0.0.0:8080 --auth none /home/coder/project
+
   db-backup:
     build: ./jobs
     restart: unless-stopped
