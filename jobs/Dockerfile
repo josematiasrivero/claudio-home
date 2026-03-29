@@ -1,6 +1,6 @@
 FROM postgres:17-alpine
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash curl
 
 COPY backup-databases.sh /scripts/backup-databases.sh
 RUN chmod +x /scripts/backup-databases.sh

@@ -17,6 +17,8 @@ services:
   db-backup:
     build: ./jobs
     restart: unless-stopped
+    environment:
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
     volumes:
       - /mnt/data/backups:/backups
     extra_hosts:
