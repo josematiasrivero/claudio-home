@@ -50,6 +50,19 @@
 		reverse_proxy host.docker.internal:5013
 	}
 
+	@invoiceme host invoiceme.claudio.adavance.com
+	handle @invoiceme {
+		reverse_proxy host.docker.internal:6000
+	}
+
+	@invoiceme-db host invoiceme-db.claudio.adavance.com
+	handle @invoiceme-db {
+		basic_auth {
+			admin $2a$14$IWcdEpkoH5mHQ1duXr3.cuxj/aEpnHU3zUVAqVfTAbe7fBLATgymu
+		}
+		reverse_proxy host.docker.internal:6011
+	}
+
 	@tvn-db host tvn-db.claudio.adavance.com
 	handle @tvn-db {
 		basic_auth {
