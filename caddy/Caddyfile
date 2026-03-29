@@ -68,7 +68,7 @@
 		basic_auth {
 			admin $2a$14$IWcdEpkoH5mHQ1duXr3.cuxj/aEpnHU3zUVAqVfTAbe7fBLATgymu
 		}
-		reverse_proxy host.docker.internal:8080
+		reverse_proxy code-server:8080
 	}
 
 	@tvn-db host tvn-db.claudio.adavance.com
