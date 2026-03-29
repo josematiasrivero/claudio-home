@@ -1,6 +1,6 @@
 services:
   caddy:
-    build: .
+    build: ./caddy
     restart: unless-stopped
     ports:
       - "80:80"
@@ -8,9 +8,17 @@ services:
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  db-backup:
+    build: ./jobs
+    restart: unless-stopped
+    volumes:
+      - /mnt/data/backups:/backups
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
